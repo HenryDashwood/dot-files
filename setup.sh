@@ -1,5 +1,4 @@
 sudo apt update -y
-
 sudo apt install -y fail2ban ufw
 sudo ufw allow ssh
 sudo ufw enable -y
@@ -30,5 +29,5 @@ if [ ! -d ~/.pyenv/versions/3.8.5 ]; then
 	pyenv virtualenv 3.8.5 py385
 fi
 
-
-pyenv activate py385
+grep -qxF 'eval "$(pyenv activate py385)"' ~/.zshrc || echo 'eval "$(pyenv activate py385)"' >> ~/.zshrc
+source ~/.zshrc
