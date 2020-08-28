@@ -9,6 +9,8 @@ sudo apt install -y zsh make build-essential libssl-dev zlib1g-dev \
 	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
 	git
 
+chsh -s /usr/bin/zsh
+
 if [ ! -d ~/.oh-my-zsh ] 
 then
 	wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
