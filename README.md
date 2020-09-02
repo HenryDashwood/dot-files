@@ -18,4 +18,10 @@ cmd-d
 ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
 sh dot-files/setup.sh
+
+source .zshrc
+
+ssh-keygen -t ed25519
+
+cat .ssh/id_ed25519.pub
 ```
