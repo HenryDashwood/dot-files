@@ -19,7 +19,7 @@ ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
 sh dot-files/setup.sh
 
-source .zshrc
+pyenv activate py385
 
 ssh-keygen -t ed25519
 
