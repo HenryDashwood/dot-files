@@ -9,31 +9,21 @@ sudo apt install -y zsh make build-essential libssl-dev zlib1g-dev \
 	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
 	git
 
-chsh -s /usr/bin/zsh
 
-if [ ! -d ~/.oh-my-zsh ] 
-then
-	wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-else
-    if [ ! -d ~/.pyenv ] 
-    then
-        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-        grep -qxF 'export PYENV_ROOT="$HOME/.pyenv"' ~/.zshrc || echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-        grep -qxF 'export PATH="$PYENV_ROOT/bin:$PATH"' ~/.zshrc || echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-        grep -qxF 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' ~/.zshrc || echo 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-        source ~/.zshrc
-        sudo git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-        source ~/.zshrc
-        grep -qxF 'eval "$(pyenv virtualenv-init -)"' ~/.zshrc || echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
-        source ~/.zshrc
-
-        if [ ! -d ~/.pyenv/versions/3.8.5 ] 
-        then
-            pyenv install 3.8.5
-            pyenv virtualenv 3.8.5 py385
-        fi
-
-        grep -qxF 'pyenv activate py385' ~/.zshrc || echo 'pyenv activate py385' >> ~/.zshrc
-        source ~/.zshrc
-    fi
+if [ ! -d ~/.oh-my-zsh ]; then
+	chsh -s /usr/bin/zsh
+	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+	cp .vimrc ~/.vimrc
+	cp .zshrc ~/.zshrc
 fi
+if [ ! -d ~/.pyenv ]; then
+        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+fi
+
+source ~/.zshrc
+
+if [ ! -d ~/.pyenv/versions/3.8.5 ]; then
+        pyenv install 3.8.5
+	pyenv virtualenv 3.8.5 py385
+fi	
