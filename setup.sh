@@ -11,10 +11,10 @@ sudo apt install -y zsh make build-essential libssl-dev zlib1g-dev \
 
 
 if [ ! -d ~/.oh-my-zsh ]; then
-	chsh -s /usr/bin/zsh
 	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-	cp .vimrc ~/.vimrc
-	cp .zshrc ~/.zshrc
+	cp ~/dot-files/.vimrc ~/.vimrc
+	cp ~/dot-files/.zshrc ~/.zshrc
+	chsh -s /usr/bin/zsh
 fi
 if [ ! -d ~/.pyenv ]; then
         git clone https://github.com/pyenv/pyenv.git ~/.pyenv
