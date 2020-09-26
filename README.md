@@ -19,9 +19,13 @@ ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
 sh dot-files/setup.sh
 
+Ctrl-d
+
+pbcopy < ~/.ssh/id_ed25519
+
+vim ~/.ssh/id_ed25519
+
+sudo chmod 600 ~/.ssh/id_ed25519
+
 pyenv activate py385
-
-ssh-keygen -t ed25519
-
-cat .ssh/id_ed25519.pub
 ```
