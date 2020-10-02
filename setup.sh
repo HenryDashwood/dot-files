@@ -9,6 +9,8 @@ sudo apt install -y zsh make build-essential libssl-dev zlib1g-dev \
 	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
 	git
 
+git config --global user.email hcndashwood@gmail.com
+git config --global user.name HenryDashwood
 
 if [ ! -d ~/.oh-my-zsh ]; then
 	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh

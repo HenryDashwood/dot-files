@@ -21,9 +21,5 @@ ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
 sh dot-files/setup.sh
 
-Ctrl-d
-
-ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
-
 pyenv activate py385
 ```
