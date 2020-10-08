@@ -25,7 +25,7 @@ fi
 
 source ~/.zshrc
 
-if [ ! -d ~/.pyenv/versions/3.8.5 ]; then
-        pyenv install 3.8.5
-	pyenv virtualenv 3.8.5 py385
+if [ ! -d ~/.pyenv/versions/3.8.6 ]; then
+        pyenv install 3.8.6
+	pyenv virtualenv 3.8.6 py386
 fi	
