@@ -7,6 +7,8 @@ usermod -aG sudo henry
 
 Ctrl-d
 
+ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE] "mkdir -p .ssh"
+
 scp ~/.ssh/id_ed25519 henry@[IP_ADDRESS_OF_REMOTE_MACHINE]:/home/henry/.ssh
 
 ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
