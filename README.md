@@ -1,6 +1,6 @@
 # dot-files
 ```
-ssh -i ~/.ssh/id_ed25519 root@[IP_ADDRESS_OF_REMOTE_MACHINE]
+ssh -i [PATH_TO_SSH_KEY] root@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
 adduser henry
 usermod -aG sudo henry
