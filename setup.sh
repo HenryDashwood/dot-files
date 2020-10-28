@@ -1,7 +1,7 @@
 sudo apt update -y
 sudo apt install -y fail2ban ufw
 sudo ufw allow ssh
-sudo ufw enable
+sudo ufw enable --force enable
 sudo ufw allow 8888
 
 sudo apt install -y zsh make build-essential libssl-dev zlib1g-dev \
