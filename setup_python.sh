@@ -12,3 +12,5 @@ if [ ! -d ~/.pyenv/versions/3.8.6 ]; then
 	code --install-extension ms-python.python
 	code --install-extension ms-python.vscode-pylance
 fi
+
+source ~/.zshrc

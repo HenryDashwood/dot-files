@@ -1,4 +1,5 @@
 # dot-files
+
 ```
 ssh -i [PATH_TO_SSH_KEY] root@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
@@ -15,13 +16,11 @@ ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
 git clone git@github.com:HenryDashwood/dot-files.git
 
-sh dot-files/setup.sh
+sh dot-files/setup_zsh.sh
 
 Ctrl-d
 
 ssh henry@[IP_ADDRESS_OF_REMOTE_MACHINE]
 
-sh dot-files/setup.sh
-
-pyenv activate py386
+sh dot-files/setup_python.sh
 ```
