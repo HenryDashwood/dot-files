@@ -1,10 +1,10 @@
-sudo apt update -y
-sudo apt install -y fail2ban ufw
-sudo ufw allow ssh
-sudo ufw --force enable
-sudo ufw allow 8888
+sudo -S apt update -y
+sudo -S apt install -y fail2ban ufw
+sudo -S ufw allow ssh
+sudo -S ufw --force enable
+sudo -S ufw allow 8888
 
-sudo apt install -y zsh make build-essential libssl-dev zlib1g-dev \
+sudo -S apt install -y zsh make build-essential libssl-dev zlib1g-dev \
 	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
 	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
 	git cmake
