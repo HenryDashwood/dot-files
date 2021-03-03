@@ -10,8 +10,9 @@ function createsshuser()
 
 USERNAME=$1
 IP=$2
+PRIVATE_KEY=$3
 
-ssh -i ~/datacrunch root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
+ssh -i $PRIVATE_KEY root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
 
 scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
 
