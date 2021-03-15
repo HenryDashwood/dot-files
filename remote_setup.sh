@@ -60,7 +60,7 @@ then {
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
-else if [ $PROVIDER == "DATACRUNCH" ] 
+elif [ $PROVIDER == "DATACRUNCH" ] 
 then {
 	ssh -i $PRIVATE_KEY root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
 	scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
@@ -70,5 +70,4 @@ then {
 	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh"
 	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
-
-
+fi
