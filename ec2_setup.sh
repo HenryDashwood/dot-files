@@ -1,3 +1,5 @@
+sudo -S apt update -y
+
 sudo -S apt install -y zsh make build-essential libssl-dev zlib1g-dev \
 	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
 	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
@@ -11,4 +13,4 @@ if [ ! -d ~/.oh-my-zsh ]; then
 	cp ~/dot-files/.vimrc ~/.vimrc
 	cp ~/dot-files/.zshrc ~/.zshrc
 	chsh -s /usr/bin/zsh
-fi	
+fi

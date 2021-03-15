@@ -1,5 +1,4 @@
-function createsshuser()
-{
+function createsshuser() {
 	useradd -m -s /bin/bash $1
 	passwd $1
 	usermod -aG sudo $1
@@ -8,14 +7,68 @@ function createsshuser()
 	chmod -R 777 /home/$1/.ssh
 }
 
-USERNAME=$1
-IP=$2
-PRIVATE_KEY=$3
+function security() {
+	sudo -S apt install -y fail2ban ufw
+	sudo -S ufw allow ssh
+	sudo -S ufw --force enable
+	sudo -S ufw allow 8888
+}
 
-ssh -i $PRIVATE_KEY root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
+function setupzsh() {
+	sudo -S apt install -y zsh make build-essential libssl-dev zlib1g-dev \
+	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
+	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
+	git cmake protobuf-compiler
 
-scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
+	git config --global user.email hcndashwood@gmail.com
+	git config --global user.name HenryDashwood
 
-ssh $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git && sh dot-files/setup_zsh.sh"
+	if [ ! -d ~/.oh-my-zsh ]; then
+		git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+		cp ~/dot-files/.vimrc ~/.vimrc
+		cp ~/dot-files/.zshrc ~/.zshrc
+		chsh -s /usr/bin/zsh
+	fi
+}
 
-ssh $USERNAME@$IP "zsh dot-files/setup_python.sh"
+function setuppython() {
+	if [ ! -d ~/.pyenv ]; then
+		git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+		git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+	fi
+
+	source ~/.zshrc
+
+	if [ ! -d ~/.pyenv/versions/3.9.1 ]; then
+			pyenv install 3.9.1
+		pyenv virtualenv 3.9.1 py391
+		pyenv activate py391
+	fi
+}
+
+PROVIDER=$1
+USERNAME=$2
+IP=$3
+PRIVATE_KEY=$4
+
+if [ $PROVIDER == "EC2" ]
+then {
+	scp -i $PRIVATE_KEY ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "sh dot-files/setup_zsh.sh"
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh"
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setuppython); setuppython"
+}
+else if [ $PROVIDER == "DATACRUNCH" ] 
+then {
+	ssh -i $PRIVATE_KEY root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
+	scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
+	ssh $USERNAME@$IP "sudo -S apt update -y"
+	ssh $USERNAME@$IP "$(typeset -f security); security"
+	ssh $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
+	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh"
+	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
+}
+
+
