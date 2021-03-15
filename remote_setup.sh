@@ -16,9 +16,9 @@ function security() {
 
 function setupzsh() {
 	sudo -S apt install -y zsh make build-essential libssl-dev zlib1g-dev \
-	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
-	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
-	git cmake protobuf-compiler
+		libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
+		libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
+		git cmake protobuf-compiler
 
 	git config --global user.email hcndashwood@gmail.com
 	git config --global user.name HenryDashwood
@@ -27,7 +27,7 @@ function setupzsh() {
 		git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 		cp ~/dot-files/.vimrc ~/.vimrc
 		cp ~/dot-files/.zshrc ~/.zshrc
-		chsh -s /usr/bin/zsh
+		sudo chsh -s /usr/bin/zsh $1
 	fi
 }
 
@@ -57,7 +57,7 @@ then {
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sh dot-files/setup_zsh.sh"
-	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh"
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
 elif [ $PROVIDER == "DATACRUNCH" ] 
@@ -67,7 +67,7 @@ then {
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
 	ssh $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
-	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh"
+	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
 fi
