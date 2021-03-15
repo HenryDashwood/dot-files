@@ -1,5 +1,5 @@
 # Notes on how to use tmux
-Remember shift key for lots of the icons in these commands
+Remember shift key for lots of the characters in these commands
 - Install `sudo apt intall tmux`
 - Start `tmux`
 - Create new pane to the right `Ctrl+b %`
