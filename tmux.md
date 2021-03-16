@@ -4,7 +4,7 @@ Remember shift key for lots of the characters in these commands
 
 | Action                       |                      Command                       |                             Notes |
 | ---------------------------- | :------------------------------------------------: | --------------------------------: |
-| Install                      |               `sudo apt intall tmux`               |                                   |
+| Install                      |               `sudo apt install tmux`              |                                   |
 | Create new pane to the right |                     `Ctrl+b %`                     |                                   |
 | Start                        |                       `tmux`                       |                                   |
 | Create new pane below        |                     `Ctrl+b "`                     |                                   |
@@ -12,7 +12,7 @@ Remember shift key for lots of the characters in these commands
 | Close current pane           |                       `exit`                       |                                   |
 | Create new window            |                     `Ctrl+b c`                     |                                   |
 | Switch to window by number   |              `Ctrl+b [WINDOW NUMBER]`              |                                   |
-| Rename current window        |         `Ctrl+b ,` + [NEW NAME] + `Enter`          |                                   |
+| Rename current window        |         `Ctrl+b ,` + `[NEW NAME]` + `Enter`        |                                   |
 | Close window                 |      `exit` when there is only one pane left       |                                   |
 | Detach session               |                     `Ctrl+b d`                     |                                   |
 | List background sessions     |                     `tmux ls`                      |                                   |
