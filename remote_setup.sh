@@ -39,10 +39,10 @@ function setuppython() {
 
 	source ~/.zshrc
 
-	if [ ! -d ~/.pyenv/versions/3.9.1 ]; then
-			pyenv install 3.9.1
-		pyenv virtualenv 3.9.1 py391
-		pyenv activate py391
+	if [ ! -d ~/.pyenv/versions/3.9.4 ]; then
+			pyenv install 3.9.4
+		pyenv virtualenv 3.9.4 py394
+		pyenv activate py394
 	fi
 }
 
