@@ -55,6 +55,7 @@ if [ $PROVIDER == "EC2" ]
 then {
 	scp -i $PRIVATE_KEY ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "ssh-keyscan github.com >> ~/.ssh/known_hosts"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sh dot-files/setup_zsh.sh"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
