@@ -1,3 +1,8 @@
+PROVIDER=$1
+USERNAME=$2
+IP=$3
+PRIVATE_KEY=$4
+
 function createsshuser() {
 	useradd -m -s /bin/bash $1
 	passwd $1
@@ -42,15 +47,10 @@ function setuppython() {
 	if [ ! -d ~/.pyenv/versions/3.9.4 ]; then
 			pyenv install 3.9.4
 		pyenv virtualenv 3.9.4 py394
-		/home/ubuntu/.pyenv/versions/3.9.4/envs/py394/bin/python3.9 -m pip install --upgrade pip
+		/home/$USERNAME/.pyenv/versions/3.9.4/envs/py394/bin/python3.9 -m pip install --upgrade pip
 		pyenv activate py394
 	fi
 }
-
-PROVIDER=$1
-USERNAME=$2
-IP=$3
-PRIVATE_KEY=$4
 
 if [ $PROVIDER == "EC2" ]
 then {
