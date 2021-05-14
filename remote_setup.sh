@@ -21,8 +21,8 @@ function security() {
 
 function setupzsh() {
 	sudo -S apt install -y zsh make build-essential libssl-dev zlib1g-dev \
-		libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
-		libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
+		libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+		libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
 		git cmake protobuf-compiler
 
 	git config --global user.email hcndashwood@gmail.com
