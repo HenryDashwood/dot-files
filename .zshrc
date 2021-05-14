@@ -1,4 +1,4 @@
-export ZSH="/home/ubuntu/.oh-my-zsh"
+export ZSH="/home/$USERNAME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
