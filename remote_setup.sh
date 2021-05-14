@@ -45,7 +45,7 @@ function setuppython() {
 	source ~/.zshrc
 
 	if [ ! -d ~/.pyenv/versions/3.9.4 ]; then
-			pyenv install 3.9.4
+		pyenv install 3.9.4
 		pyenv virtualenv 3.9.4 py394
 		/home/$USERNAME/.pyenv/versions/3.9.4/envs/py394/bin/python3.9 -m pip install --upgrade pip wheel
 		pyenv activate py394
