@@ -1,4 +1,4 @@
-if $USERNAME = "root"
+if $USERNAME = "root"; then
  export ZSH="/$USERNAME/.oh-my-zsh"
 else
  export ZSH="/home/$USERNAME/.oh-my-zsh"
