@@ -1,4 +1,8 @@
-export ZSH="/home/$USERNAME/.oh-my-zsh"
+if $USERNAME = "root"
+ export ZSH="/$USERNAME/.oh-my-zsh"
+else
+ export ZSH="/home/$USERNAME/.oh-my-zsh"
+fi
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
