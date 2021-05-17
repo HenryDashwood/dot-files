@@ -30,8 +30,6 @@ function setupzsh() {
 
 	if [ ! -d ~/.oh-my-zsh ]; then
 		git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-		cp ~/dot-files/.vimrc ~/.vimrc
-		cp ~/dot-files/.zshrc ~/.zshrc
 		sudo chsh -s /usr/bin/zsh $1
 	fi
 }
@@ -57,8 +55,7 @@ then {
 	scp -i $PRIVATE_KEY ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "ssh-keyscan github.com >> ~/.ssh/known_hosts"
-	ssh -i $PRIVATE_KEY $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
-	ssh -i $PRIVATE_KEY $USERNAME@$IP "sh dot-files/setup_zsh.sh"
+	scp -i $PRIVATE_KEY -r ../configs/shell/* $USERNAME@$IP:~
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
@@ -68,7 +65,7 @@ then {
 	scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
-	ssh $USERNAME@$IP "git clone git@github.com:HenryDashwood/dot-files.git"
+	scp -r ../configs/shell/* $USERNAME@$IP:~
 	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
