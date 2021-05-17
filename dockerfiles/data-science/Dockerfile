@@ -2,12 +2,13 @@ FROM python:3.9-slim
 RUN apt-get update --fix-missing
 RUN DEBIAN_FRONTEND="noninteractive" TZ="Europe/London" apt install -y build-essential cmake curl git make libssl-dev \
     libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev libffi-dev liblzma-dev llvm \
-    protobuf-compiler tk-dev vim wget xz-utils zlib1g-dev zsh
+    protobuf-compiler sudo tk-dev vim wget xz-utils zlib1g-dev zsh
 
 RUN useradd -m -s /bin/zsh ubuntu
 RUN usermod -aG sudo ubuntu
+RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toto
 
-USER ubuntu
+USER ubuntu 
 
 WORKDIR /home/ubuntu
     
