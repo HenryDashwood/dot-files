@@ -2,6 +2,8 @@
 
 Dockerfiles that I use for stuff
 
+## Useful Commands
+
 To build an image:
 
 ```shell
@@ -20,7 +22,7 @@ IF you stop the container but would like to restart it:
 docker start -ai [CONTAINER_ID]
 ```
 
-If you want to use the image in other images you will need to tag it
+If you want to use the image in other images you will need to tag it:
 
 ```shell
 docker tag [IMAGE_ID] henrydashwood/[NAME]
