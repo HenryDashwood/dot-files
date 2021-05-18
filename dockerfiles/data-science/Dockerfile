@@ -17,5 +17,6 @@ RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 RUN git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 COPY .zshrc .
 
+RUN export PATH="$PATH:/home/ubuntu/.local/bin"
 RUN pip install -U pip wheel
-RUN pip install -U black flake8 isort pandas
+RUN pip install -U black flake8 isort pandas typer
