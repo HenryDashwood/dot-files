@@ -1,4 +1,4 @@
-# DOCKER_FILES
+# Dockerfiles
 
 Dockerfiles that I use for stuff
 
@@ -16,7 +16,7 @@ To run an image as a container:
 docker run -ti henrydashwood:[NAME] /bin/zsh
 ```
 
-IF you stop the container but would like to restart it:
+If you stopped the container but would like to restart it:
 
 ```shell
 docker start -ai [CONTAINER_ID]
