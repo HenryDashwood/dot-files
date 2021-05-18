@@ -7,9 +7,7 @@ RUN DEBIAN_FRONTEND="noninteractive" TZ="Europe/London" apt install -y build-ess
 RUN useradd -m -s /bin/zsh ubuntu
 RUN usermod -aG sudo ubuntu
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toto
-
 USER ubuntu 
-
 WORKDIR /home/ubuntu
     
 RUN git config --global user.email hcndashwood@gmail.com && git config --global user.name HenryDashwood
@@ -18,3 +16,6 @@ RUN git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 RUN git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 COPY .zshrc .
+
+RUN pip install -U pip wheel
+RUN pip install -U black flake8 isort pandas
