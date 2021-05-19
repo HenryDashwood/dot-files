@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM --platform=linux/amd64 python:3.9-slim
 RUN apt-get update --fix-missing
 RUN DEBIAN_FRONTEND="noninteractive" TZ="Europe/London" apt install -y build-essential cmake curl git make libssl-dev \
     libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev libffi-dev liblzma-dev llvm \
