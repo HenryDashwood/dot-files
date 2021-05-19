@@ -9,7 +9,7 @@ RUN usermod -aG sudo ubuntu
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toto
 USER ubuntu
 WORKDIR /home/ubuntu
-RUN sudo chown -R /home/ubuntu
+RUN sudo chown -R ubuntu /home/ubuntu
     
 RUN git config --global user.email hcndashwood@gmail.com && git config --global user.name HenryDashwood
 
