@@ -19,4 +19,4 @@ COPY .zshrc .
 
 RUN export PATH="$PATH:/home/ubuntu/.local/bin"
 RUN pip install -U pip wheel
-RUN pip install -U black flake8 isort pandas typer
+RUN pip install -U black datasets fastapi flake8 isort pandas scipy sklearn torch transformers typer

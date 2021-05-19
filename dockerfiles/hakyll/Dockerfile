@@ -1,4 +1,4 @@
-FROM amd64/haskell:8
+FROM amd64/haskell:9
 # RUN apt-get update --fix-missing
 # RUN apt-get install -y curl git sudo zsh
 
