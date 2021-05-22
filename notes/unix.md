@@ -8,3 +8,8 @@ Add a directory to to to start of your $PATH
 ```shell
 export PATH="[DIRECTORY]:$PATH"
 ```
+
+Get the size of of a directory
+```shell
+du -sh [DIRECTORY]
+```
