@@ -9,7 +9,8 @@ Add a directory to to to start of your $PATH
 export PATH="[DIRECTORY]:$PATH"
 ```
 
-Get the size of of a directory
+Get the size of of a directory [See more](https://linuxize.com/post/how-get-size-of-file-directory-linux/)
 ```shell
 du -sh [DIRECTORY]
 ```
+
