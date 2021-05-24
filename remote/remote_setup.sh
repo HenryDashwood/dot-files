@@ -21,13 +21,18 @@ function security() {
 }
 
 function setupzsh() {
-	sudo -S apt install -y zsh make build-essential libssl-dev zlib1g-dev \
-		libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
-		libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
-		git cmake protobuf-compiler
+	sudo -S apt install -y \
+		build-essential cmake curl git \
+		libbz2-dev libncurses5-dev liblzma-dev libncursesw5-dev libffi-dev libreadline-dev libsqlite3-dev libssl-dev \
+		llvm make protobuf-compiler python-openssl tk-dev unzip wget xz-utils zlib1g-dev zsh
 
 	git config --global user.email hcndashwood@gmail.com
 	git config --global user.name HenryDashwood
+	
+	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+	unzip awscliv2.zip
+	sudo ./aws/install
+	rm awscliv2.zip
 
 	if [ ! -d ~/.oh-my-zsh ]; then
 		git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
