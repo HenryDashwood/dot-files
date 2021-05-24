@@ -7,6 +7,7 @@ function createsshuser() {
 	useradd -m -s /bin/bash $1
 	passwd $1
 	usermod -aG sudo $1
+	echo "$1 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toto
 	mkdir /home/$1/.ssh
 	ssh-keyscan -t rsa github.com >> /home/$1/.ssh/known_hosts
 	chmod -R 777 /home/$1/.ssh
@@ -42,11 +43,17 @@ function setuppython() {
 
 	source ~/.zshrc
 
-	if [ ! -d ~/.pyenv/versions/3.9.4 ]; then
-		pyenv install 3.9.4
-		pyenv virtualenv 3.9.4 py394
-		/home/$USERNAME/.pyenv/versions/3.9.4/envs/py394/bin/python3.9 -m pip install --upgrade pip wheel
-		pyenv activate py394
+	if [ ! -d ~/.pyenv/versions/3.9.5 ]; then
+		pyenv install 3.9.5
+		pyenv virtualenv 3.9.5 py395
+		/home/$USERNAME/.pyenv/versions/3.9.5/envs/py395/bin/python3.9 -m pip install --upgrade pip wheel
+		echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .profile
+		echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .profile
+		echo 'eval "$(pyenv init --path)"' >> .profile
+		echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .zprofile
+		echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .zprofile
+		echo 'eval "$(pyenv init --path)"' >> .zprofile
+		pyenv activate py395
 	fi
 }
 
@@ -55,7 +62,8 @@ then {
 	scp -i $PRIVATE_KEY ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "ssh-keyscan github.com >> ~/.ssh/known_hosts"
-	scp -i $PRIVATE_KEY -r ../configs/shell/* $USERNAME@$IP:~
+	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
+	scp -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
@@ -65,7 +73,8 @@ then {
 	scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
-	scp -r ../configs/shell/* $USERNAME@$IP:~
+	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
+	scp -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
 	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
