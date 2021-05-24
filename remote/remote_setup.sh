@@ -60,6 +60,7 @@ function setuppython() {
 if [ $PROVIDER == "EC2" ]
 then {
 	scp -i $PRIVATE_KEY ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
+	ssh -i $PRIVATE_KEY $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/id_ed25519"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "ssh-keyscan github.com >> ~/.ssh/known_hosts"
 	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
@@ -71,6 +72,7 @@ elif [ $PROVIDER == "DATACRUNCH" ]
 then {
 	ssh -i $PRIVATE_KEY root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
 	scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
+	ssh $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/id_ed25519"
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
 	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
