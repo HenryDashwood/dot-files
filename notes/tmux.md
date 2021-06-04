@@ -20,3 +20,4 @@ Remember shift key for lots of the characters in these commands
 | Rename session               | `tmux rename-session -t [CURRENT NAME] [NEW NAME]` | name is 0, 1, etc by defualt.     |
 | Create new session           | `tmux new -s [SESSION NAME]`                       | `tmux` names it after next number |
 | Delete session               | `tmux kill-session -t [SESSION NAME]`              |                                   |
+| Enter scroll mode in pane|`Ctrl+b [`|`q` to quit mode|
