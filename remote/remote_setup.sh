@@ -48,17 +48,17 @@ function setuppython() {
 
 	source ~/.zshrc
 
-	if [ ! -d ~/.pyenv/versions/3.9.5 ]; then
-		pyenv install 3.9.5
-		pyenv virtualenv 3.9.5 py395
-		/home/$USERNAME/.pyenv/versions/3.9.5/envs/py395/bin/python3.9 -m pip install --upgrade pip wheel
+	if [ ! -d ~/.pyenv/versions/3.9.6 ]; then
+		pyenv install 3.9.6
+		pyenv virtualenv 3.9.6 py396
+		/home/$USERNAME/.pyenv/versions/3.9.6/envs/py396/bin/python3.9 -m pip install --upgrade pip wheel
 		echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .profile
 		echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .profile
 		echo 'eval "$(pyenv init --path)"' >> .profile
 		echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .zprofile
 		echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .zprofile
 		echo 'eval "$(pyenv init --path)"' >> .zprofile
-		pyenv activate py395
+		pyenv activate py396
 	fi
 }
 
