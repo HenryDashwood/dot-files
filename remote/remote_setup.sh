@@ -68,8 +68,8 @@ then {
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/id_ed25519"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "sudo -S apt update -y"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "ssh-keyscan github.com >> ~/.ssh/known_hosts"
-	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
-	scp -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
+	scp -i $PRIVATE_KEY -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
+	scp -i $PRIVATE_KEY -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh -i $PRIVATE_KEY $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
@@ -80,8 +80,8 @@ then {
 	ssh $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/id_ed25519"
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
-	scp -i $PRIVATE_KEY -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
-	scp -i $PRIVATE_KEY -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
+	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
+	scp -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
 	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
