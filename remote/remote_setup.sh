@@ -80,8 +80,8 @@ then {
 	ssh $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/id_ed25519"
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
-	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
-	scp -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
+	scp -i $PRIVATE_KEY -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
+	scp -i $PRIVATE_KEY -r ../configs/shell/.vimrc $USERNAME@$IP:~/.vimrc
 	ssh $USERNAME@$IP "$(typeset -f setupzsh); setupzsh $USERNAME"
 	ssh $USERNAME@$IP "$(typeset -f setuppython); setuppython"
 }
