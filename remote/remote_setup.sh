@@ -77,7 +77,7 @@ elif [ $PROVIDER == "DATACRUNCH" ]
 then {
 	ssh -i $PRIVATE_KEY root@$IP "$(typeset -f createsshuser); createsshuser $USERNAME"
 	scp ~/.ssh/id_ed25519 $USERNAME@$IP:~/.ssh
-	ssh $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/id_ed25519"
+	ssh $USERNAME@$IP "chmod 400 /home/$USERNAME/.ssh/datacrunch"
 	ssh $USERNAME@$IP "sudo -S apt update -y"
 	ssh $USERNAME@$IP "$(typeset -f security); security"
 	scp -r ../configs/shell/.zshrc $USERNAME@$IP:~/.zshrc
