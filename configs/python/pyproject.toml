@@ -1,3 +1,3 @@
-[tool.black]
+[tool.ruff]
+include = ["*.py", "*.pyi", "**/pyproject.toml", "*.ipynb"]
 line-length = 119
-target-version = ['py38']
